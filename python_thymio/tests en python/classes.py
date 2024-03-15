@@ -9,6 +9,7 @@ class Thymio :
 
         self.obs_avoided = False
         self.prox_horizontal = []
+        self.prox_ground = []
         self.button_center = 0
 
         self.motor_target_left=0
@@ -19,7 +20,11 @@ class Thymio :
 
     def getProxHorizontal(self, node):
         aw(node.wait_for_variables({"prox.horizontal"}))
-        self.prox = list(node["prox.horizontal"]) + [0]
+        self.prox = list(node.v.prox.horizontal)
+    
+    def getProxGround(self, node):
+        aw(node.wait_for_variables({"prox.ground"}))
+        self.prox = list(node.v.prox.ground)
 
     def getCenterButton(self, node):
         aw(node.wait_for_variables({"button.center"}))
