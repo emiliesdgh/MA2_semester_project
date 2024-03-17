@@ -15,12 +15,12 @@ import numpy as np
 # robot = Thymio()
 
 
-# def see_costume(Thymio, node, obs_threshold) :
+def see_costume(Thymio, node, obs_threshold) :
 
-    # proxG = list(node["prox.ground"]) + [0]
+    proxG = list(node["prox.ground.ambiant"]) + [0]
 
-    # print(proxG[0])
-    # print(proxG[1])
+    print(proxG[0])
+    print(proxG[1])
 
 
     # if
@@ -35,26 +35,26 @@ import numpy as np
 
 def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
-    # prox = list(node["prox.horizontal"]) + [0]
+    prox = list(node["prox.horizontal"]) + [0]
 
-    Thymio.getProxHorizontal(node)
+    # Thymio.getProxHorizontal(node)
 
-    print(Thymio.prox_horizontal)
+    # print(Thymio.prox_horizontal)
 
-    # if Thymio.prox_horizontal[5] > Thymio.prox_horizontal[6] :
+    if prox[5] > prox[6] :
 
-    #     Thymio.setSpeedLeft(motor_speed+50, node)
-    #     Thymio.setSpeedRight(-motor_speed, node)
+        Thymio.setSpeedLeft(motor_speed+50, node)
+        Thymio.setSpeedRight(-motor_speed, node)
 
-    # elif Thymio.prox_horizontal[6] > Thymio.prox_horizontal[5] : # Thymio needs to contourn the obstacle counterclockwise
+    elif prox[6] > prox[5] : # Thymio needs to contourn the obstacle counterclockwise
 
-    #     Thymio.setSpeedLeft(-motor_speed, node)
-    #     Thymio.setSpeedRight(motor_speed+50, node)
+        Thymio.setSpeedLeft(-motor_speed, node)
+        Thymio.setSpeedRight(motor_speed+50, node)
 
-    # else :
+    else :
 
-    #     Thymio.setSpeedLeft(0, node)
-    #     Thymio.setSpeedRight(0, node)
+        Thymio.setSpeedLeft(0, node)
+        Thymio.setSpeedRight(0, node)
 
 def stop_program(Thymio, node, motor_speed=100) :
 

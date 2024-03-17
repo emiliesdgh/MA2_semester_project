@@ -34,20 +34,17 @@ robot = Thymio()
 def update_sensors_data(robot, node):
 
     # get button values
-    robot.getProxHorizontal(node)
+    # robot.getProxHorizontal(node)
     robot.getButtons(node)
-    a = 0
 
-i = 0
 
 while(1) :
 
 
     update_sensors_data(robot, node)
-    print("i", robot.prox_horizontal)
-    i = 1 + i
+
     # print(robot.button_center)
-    # W4_T1_PS_03_24.see_costume(robot, node, obs_threshold=500)
+    W4_T1_PS_03_24.see_costume(robot, node, obs_threshold=500)
 
 
     W4_T1_PS_03_24.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
