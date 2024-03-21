@@ -43,13 +43,13 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
     if prox[5] > prox[6] :
 
-        Thymio.setSpeedLeft(motor_speed+50, node)
+        Thymio.setSpeedLeft(motor_speed, node)
         Thymio.setSpeedRight(-motor_speed, node)
 
     elif prox[6] > prox[5] : # Thymio needs to contourn the obstacle counterclockwise
 
         Thymio.setSpeedLeft(-motor_speed, node)
-        Thymio.setSpeedRight(motor_speed+50, node)
+        Thymio.setSpeedRight(motor_speed, node)
 
     else :
 
