@@ -54,7 +54,9 @@ while(1) :
 
     if (robot.button_center) :
         
-        robot.buttonForward = 0
+        # robot.buttonForward = 0
+        W6_T1_PS_24_03_30.setButtons(robot, 0)
+
         print(robot.button_center)
         W6_T1_PS_24_03_30.stop_program(robot, node, motor_speed=0)
         aw(node.unlock())
@@ -67,7 +69,6 @@ while(1) :
         robot.buttonForward = 1
 
         print(robot.button_forward)
-        print(robot.buttonForward)
 
         print(robot.buttonCenter)
         print(robot.buttonForward)
@@ -75,16 +76,16 @@ while(1) :
         print(robot.buttonLeft)
         print(robot.buttonRight)
     
-    # if (robot.buttonForward) :
+    if (robot.buttonForward) :
 
-    #     W6_T1_PS_24_03_30.programFront(robot, node, client)
-
-    while (robot.buttonForward) :
-
-        update_sensors_data(robot, node)
-
-        
-        
         W6_T1_PS_24_03_30.programFront(robot, node, client)
+
+    # while (robot.buttonForward) :
+
+    #     update_sensors_data(robot, node)
+
+
+        
+    #     W6_T1_PS_24_03_30.programFront(robot, node, client)
 
 

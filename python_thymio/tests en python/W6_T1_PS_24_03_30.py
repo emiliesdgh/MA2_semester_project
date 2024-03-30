@@ -69,7 +69,14 @@ def programFront (Thymio, node, client) :
     aw(client.sleep(2))
 
 
-
+def acc():
+    global acc, leds_top
+    if acc[0]>18 or acc[0]<-18: #Thymio is blue when placed on one of its sides
+        leds_top=[0,0,32]
+    if acc[1]>18 or acc[1]<-18: #Thymio is red when placed on its front or backside
+        leds_top=[32,0,0]
+    if acc[2]>18 or acc[2]<-18: #Thymio is green when placed on its wheels or upside-down
+        leds_top=[0,32,0]
 
 def clockwise(node) :
 
@@ -92,7 +99,7 @@ def obstacle_avoidance(Thymio, node, client, motor_speed=100, obs_threshold=500)
     param motor_speed: the Thymio's motor speed
     param wall_threshold: threshold starting which it is considered that the sensor saw a wall'''
 
-    clockwise_true = False  # Booleen to state if the Thymio has to contourn on the left or right
+    clockwises_true = False  # Booleen to state if the Thymio has to contourn on the left or right
 
     prev_state = "turning" # Stated of movement of the Thymio
 
