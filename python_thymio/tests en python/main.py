@@ -8,7 +8,8 @@ import copy
 #import the classes from the other modules
 from classes import Thymio
 
-import W4_T1_PS_03_24
+import W4_T1_PS_24_03_07
+import W6_T1_PS_24_03_30
 
 client = ClientAsync()
 node = aw(client.wait_for_node())
@@ -44,27 +45,27 @@ while(1) :
     update_sensors_data(robot, node)
 
     # print(robot.button_center)
-    W4_T1_PS_03_24.see_costume(robot, node, obs_threshold=500)
+    W6_T1_PS_24_03_30.see_costume(robot, node, obs_threshold=500)
 
 
-    W4_T1_PS_03_24.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
+    W6_T1_PS_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
 
     # if (button_center) :
 
     if (robot.button_center) :
         
         print(robot.button_center)
-        W4_T1_PS_03_24.stop_program(robot, node, motor_speed=0)
+        W6_T1_PS_24_03_30.stop_program(robot, node, motor_speed=0)
         aw(node.unlock())
         break
 
-    # if W4_T1_PS_03_24.stop_program(robot, node, motor_speed=0) :
+    # if W6_T1_PS_24_03_30.stop_program(robot, node, motor_speed=0) :
 
     #     aw(node.unlock())
     #     break
 
-    # if W4_T1_PS_03_24.see_costume(robot, node, 500):
-    #     W4_T1_PS_03_24.obstacle_avoidance(robot,node,client,obs_threshold=500)
+    # if W6_T1_PS_24_03_30.see_costume(robot, node, 500):
+    #     W6_T1_PS_24_03_30.obstacle_avoidance(robot,node,client,obs_threshold=500)
     # else:
     #     robot.setSpeedLeft(50, node)
     #     robot.setSpeedRight(50, node)
