@@ -73,7 +73,15 @@ class Thymio :
         
     #     self.buttonLeft = value
        # aw(node.set_variables({"button.left": [value]}))
+    def setLEDCircle(self, node, color):
+        #led = {"leds.top": colors,} 
+        ledCircle = {"leds.circle" : color}
+        aw(node.set_variables(ledCircle))
+    
+    def setLEDTop(self, node, color):
 
+        ledTop = {"leds.top" : color}
+        aw(node.set_variables(ledTop))
 
     def setSpeedLeft(self,speed,node):
         self.motor_target_left=speed

@@ -44,6 +44,8 @@ while(1) :
 
     update_sensors_data(robot, node)
 
+    robot.setLEDTop(node, [32,32,32])
+
     # print(robot.button_center)
     # W6_T1_PS_24_03_30.see_costume(robot, node, obs_threshold=500)
 
@@ -62,11 +64,11 @@ while(1) :
         aw(node.unlock())
         break
 
-    if (robot.button_forward) :
+    if (robot.button_forward and not(robot.buttonForward)) :
 
         W6_T1_PS_24_03_30.setButtons(robot, 0)
 
-        robot.buttonForward = 1
+        robot.buttonForward = 1 
 
         print(robot.button_forward)
 
@@ -76,9 +78,26 @@ while(1) :
         print(robot.buttonLeft)
         print(robot.buttonRight)
     
+    elif (robot.button_forward and robot.buttonForward) :
+        
+        robot.buttonForward = 0
+        robot.setLEDTop(node, [0,0,32])
+        aw(client.sleep(2))
+
+    
     if (robot.buttonForward) :
 
         W6_T1_PS_24_03_30.programFront(robot, node, client)
+
+    if (robot.button_backward) :
+
+        W6_T1_PS_24_03_30.setButtons(robot, 0)
+
+        robot.buttonBackward = 1
+    
+    if (robot.buttonBackward) :
+
+        W6_T1_PS_24_03_30.programBack(robot, node, client)
 
     # while (robot.buttonForward) :
 
