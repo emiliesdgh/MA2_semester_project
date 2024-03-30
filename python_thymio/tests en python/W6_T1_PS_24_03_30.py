@@ -14,6 +14,14 @@ import numpy as np
 # #Classes initialization
 # robot = Thymio()
 
+def setButtons(Thymio, value) : 
+
+        Thymio.buttonCenter = value
+        Thymio.buttonForward = value        
+        Thymio.buttonBackward = value        
+        Thymio.buttonRight = value        
+        Thymio.buttonLeft = value
+
 
 def see_costume(Thymio, node, obs_threshold) :
 
@@ -23,23 +31,9 @@ def see_costume(Thymio, node, obs_threshold) :
     print(proxG[1])
 
 
-    # if
-
-    # if any([x>obs_threshold for x in node['prox.horizontal'][:-2]]) :
-
-    #     Thymio.obs_avoided = False  # Booleen to state when the obstacle has been avoided or not
-
-    #     return True
-
-    # return False
-
 def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
     prox = list(node["prox.horizontal"]) + [0]
-
-    # Thymio.getProxHorizontal(node)
-
-    # print(Thymio.prox_horizontal)
 
     if prox[5] > prox[6] :
 
@@ -58,21 +52,21 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
 def stop_program(Thymio, node, motor_speed=100) :
 
-    # button = (node["button.center"]) + [0]
     Thymio.setSpeedLeft(0, node)
     Thymio.setSpeedRight(0, node)
 
-    # button = Thymio.getCenterButton(node)
 
-    # if (button) :
-    #     Thymio.setSpeedLeft(0, node)
-    #     Thymio.setSpeedRight(0, node)
-    #     return  True
+def programFront (Thymio, node, client) :
 
-    # button.center = list(node["button.center"])
+    Thymio.setSpeedLeft(50, node)
+    Thymio.setSpeedRight(-50, node)
 
-    # if button.center :
-    #     return True
+    aw(client.sleep(2))
+
+    Thymio.setSpeedLeft(-50, node)
+    Thymio.setSpeedRight(50, node)
+
+    aw(client.sleep(2))
 
 
 
@@ -89,6 +83,7 @@ def clockwise(node) :
         return True # returns True if the obstacle is closer to the sensor [1] rather than the sensor [3]
 
     return False
+
 
 
 def obstacle_avoidance(Thymio, node, client, motor_speed=100, obs_threshold=500): #, clockwise = False):

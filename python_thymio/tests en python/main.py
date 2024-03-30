@@ -45,7 +45,7 @@ while(1) :
     update_sensors_data(robot, node)
 
     # print(robot.button_center)
-    W6_T1_PS_24_03_30.see_costume(robot, node, obs_threshold=500)
+    # W6_T1_PS_24_03_30.see_costume(robot, node, obs_threshold=500)
 
 
     W6_T1_PS_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
@@ -54,23 +54,37 @@ while(1) :
 
     if (robot.button_center) :
         
+        robot.buttonForward = 0
         print(robot.button_center)
         W6_T1_PS_24_03_30.stop_program(robot, node, motor_speed=0)
         aw(node.unlock())
         break
 
-    # if W6_T1_PS_24_03_30.stop_program(robot, node, motor_speed=0) :
+    if (robot.button_forward) :
 
-    #     aw(node.unlock())
-    #     break
+        W6_T1_PS_24_03_30.setButtons(robot, 0)
 
-    # if W6_T1_PS_24_03_30.see_costume(robot, node, 500):
-    #     W6_T1_PS_24_03_30.obstacle_avoidance(robot,node,client,obs_threshold=500)
-    # else:
-    #     robot.setSpeedLeft(50, node)
-    #     robot.setSpeedRight(50, node)
-    #     aw(client.sleep(5))
-        # break
+        robot.buttonForward = 1
 
-# aw(node.unlock())
+        print(robot.button_forward)
+        print(robot.buttonForward)
+
+        print(robot.buttonCenter)
+        print(robot.buttonForward)
+        print(robot.buttonBackward)
+        print(robot.buttonLeft)
+        print(robot.buttonRight)
+    
+    # if (robot.buttonForward) :
+
+    #     W6_T1_PS_24_03_30.programFront(robot, node, client)
+
+    while (robot.buttonForward) :
+
+        update_sensors_data(robot, node)
+
+        
+        
+        W6_T1_PS_24_03_30.programFront(robot, node, client)
+
 

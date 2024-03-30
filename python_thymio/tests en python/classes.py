@@ -10,7 +10,18 @@ class Thymio :
         self.obs_avoided = False
         self.prox_horizontal = []
         self.prox_ground = []
+
         self.button_center = 0
+        self.button_forward = 0
+        self.button_backward = 0
+        self.button_right = 0
+        self.button_left = 0
+
+        self.buttonCenter = 0
+        self.buttonForward = 0        
+        self.buttonBackward = 0        
+        self.buttonRight = 0        
+        self.buttonLeft = 0
 
         self.motor_target_left=0
         self.motor_target_right=0
@@ -45,6 +56,24 @@ class Thymio :
 
         aw(node.wait_for_variables({"button.backward"}))
         self.button_backward = node.v.button.backward
+
+    # def setButtons(self, value) : 
+
+    #     self.buttonCenter = value
+    #     # aw(node.set_variables({"button.center": [value]}))
+
+    #     self.buttonForward = value
+    #     #aw(node.set_variables({"button.forward": [value]}))
+        
+    #     self.buttonBackward = value
+    #     #aw(node.set_variables({"button.backward": [value]}))
+        
+    #     self.buttonRight = value
+    #    # aw(node.set_variables({"button.right": [value]}))
+        
+    #     self.buttonLeft = value
+       # aw(node.set_variables({"button.left": [value]}))
+
 
     def setSpeedLeft(self,speed,node):
         self.motor_target_left=speed
