@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
+# class threading.Event :
+
+
 class Thymio :
 
     def __init__ (self) :
