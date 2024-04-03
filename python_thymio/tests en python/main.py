@@ -14,6 +14,7 @@ from classes import Thymio
 import W4_T1_PS_24_03_07
 import W6_T1_PS_24_03_30
 import W6_T1_PS_24_04_02
+import W6_T1_PS_24_04_03
 
 client = ClientAsync()
 node = aw(client.wait_for_node())
@@ -48,7 +49,7 @@ robot = Thymio()
 def update_sensors_data(robot, node):
 
     # get button values
-    # robot.getProxHorizontal(node)
+    robot.getProxHorizontal(node)
     robot.getButtons(node)
 
 # def thread_buttonCenter(name) :
@@ -101,8 +102,7 @@ while(1) :
 
     # W6_T1_PS_24_04_02.acc()
 
-    W6_T1_PS_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
-
+########
 
     if (robot.button_center) :
 
@@ -114,25 +114,44 @@ while(1) :
         aw(node.unlock())
         break
 
-    if (robot.button_forward and not(robot.buttonForward)) :
+########
 
-        W6_T1_PS_24_03_30.setButtons(robot, 0)
+    prox = list(node["prox.horizontal"]) + [0]
 
-        robot.buttonForward = 1
+    if(prox[2]) :
+        update_sensors_data(robot, node)
+        print(prox[2])
+
+        W6_T1_PS_24_04_03.see_costume(robot, node, motor_speed=50)
+    else :
+        W6_T1_PS_24_04_03.no_costume(robot, node, motor_speed=0)
+        print(prox[2])
+
+########
+
+    # W6_T1_PS_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
+
+    # if (robot.button_forward and not(robot.buttonForward)) :
+
+    #     W6_T1_PS_24_03_30.setButtons(robot, 0)
+
+    #     robot.buttonForward = 1
 
 
-    elif (robot.button_forward and robot.buttonForward) :
+    # elif (robot.button_forward and robot.buttonForward) :
 
-        robot.buttonForward = 0
-        robot.setLEDTop(node, [0,0,32])
-        aw(client.sleep(2))
+    #     robot.buttonForward = 0
+    #     robot.setLEDTop(node, [0,0,32])
+    #     aw(client.sleep(2))
 
 
-    if (robot.buttonForward) :
+    # if (robot.buttonForward) :
 
-        # while (not robot.button_center) :
+    #     # while (not robot.button_center) :
 
-        W6_T1_PS_24_03_30.programFront(robot, node, client)
+    #     W6_T1_PS_24_03_30.programFront(robot, node, client)
+
+########
 
     # if (robot.button_backward) :
 
