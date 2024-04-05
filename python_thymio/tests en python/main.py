@@ -1,3 +1,4 @@
+# from tdmclient import ClientAsync, aw
 from tdmclient import ClientAsync, aw
 import asyncio
 import matplotlib.pyplot as plt
@@ -116,14 +117,14 @@ while(1) :
 
     proxG = list(node["prox.ground.ambiant"]) + [0]
 
-    # print(proxG[0])
-    # print(proxG[1])
     print(proxG[0])
     print(proxG[1])
 
+    
+
 ######## MODIFIED COSTUME
 
-    # prox = list(node["prox.horizontal"]) + [0]
+    prox = list(node["prox.horizontal"]) + [0]
 
     # if(prox[2]) :
     #     update_sensors_data(robot, node)
@@ -133,6 +134,18 @@ while(1) :
     # else :
     #     W6_T1_PS_24_04_03.no_costume(robot, node, motor_speed=0)
     #     print(prox[2])
+
+######## 05.04.2024
+
+    print(prox[5])
+
+    if (prox[5]>3000 and prox[6]>100) :
+        robot.move_front = True
+
+    if (robot.move_front and (proxG[0]>10)) :
+        W6_T1_PS_24_03_30.programBack(robot, node, client)
+    else :
+        robot.move_front = False
 
 ######## DOUBLED COSTUME
 

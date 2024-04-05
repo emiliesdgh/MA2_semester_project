@@ -10,7 +10,7 @@ class Thymio :
 
     def __init__ (self) :
 
-        self.obs_avoided = False
+        self.move_front = False
         self.prox_horizontal = []
         self.prox_ground = []
 

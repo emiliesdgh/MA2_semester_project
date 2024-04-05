@@ -14,12 +14,12 @@ import numpy as np
 # #Classes initialization
 # robot = Thymio()
 
-def setButtons(Thymio, value) : 
+def setButtons(Thymio, value) :
 
         Thymio.buttonCenter = value
-        Thymio.buttonForward = value        
-        Thymio.buttonBackward = value        
-        Thymio.buttonRight = value        
+        Thymio.buttonForward = value
+        Thymio.buttonBackward = value
+        Thymio.buttonRight = value
         Thymio.buttonLeft = value
 
 
@@ -41,7 +41,7 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
     elif prox[6] > prox[5] : # Thymio needs to contourn the obstacle counterclockwise
         color = [24,24,0,0,0,0,24,24]
         Thymio.setLEDCircle(node, color)
-        
+
         Thymio.setSpeedLeft(-motor_speed, node)
         Thymio.setSpeedRight(motor_speed, node)
 
@@ -49,7 +49,7 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
         color = [0,24,24,24,24,0,0,0]
         Thymio.setLEDCircle(node, color)
-         
+
         Thymio.setSpeedLeft(-motor_speed, node)
         Thymio.setSpeedRight(motor_speed, node)
 
@@ -57,7 +57,7 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
         color = [0,0,0,0,24,24,24,24]
         Thymio.setLEDCircle(node, color)
-         
+
         Thymio.setSpeedLeft(motor_speed, node)
         Thymio.setSpeedRight(-motor_speed, node)
 
@@ -108,14 +108,14 @@ def programBack (Thymio, node, client) :
     Thymio.setLEDCircle(node, color)
 
     Thymio.setSpeedLeft(50, node)
-    Thymio.setSpeedRight(-50, node)
-
-    aw(client.sleep(2))
-
-    Thymio.setSpeedLeft(-50, node)
     Thymio.setSpeedRight(50, node)
 
-    aw(client.sleep(2))
+    # aw(client.sleep(2))
+
+    # Thymio.setSpeedLeft(-50, node)
+    # Thymio.setSpeedRight(50, node)
+
+    # aw(client.sleep(2))
 
 
 def acc():
