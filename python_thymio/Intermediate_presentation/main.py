@@ -53,45 +53,45 @@ while(1) :
 
 ######## MODIFIED COSTUME
 
-    # prox = list(node["prox.horizontal"]) + [0]
+    prox = list(node["prox.horizontal"]) + [0]
 
-    # if(prox[2]) :
-    #     update_sensors_data(robot, node)
-    #     print(prox[2])
+    if(prox[2]) :
+        update_sensors_data(robot, node)
+        print(prox[2])
 
-    #     modifiedCostume_24_04_03.see_costume(robot, node, motor_speed=50)
-    # else :
-    #     modifiedCostume_24_04_03.no_costume(robot, node, motor_speed=0)
-    #     print(prox[2])
+        modifiedCostume_24_04_03.see_costume(robot, node, motor_speed=50)
+    else :
+        modifiedCostume_24_04_03.no_costume(robot, node, motor_speed=0)
+        print(prox[2])
 
 ######## DOUBLED COSTUME
 
-    doubledCostume_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
+    # doubledCostume_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
 
-    if (robot.button_forward and not(robot.buttonForward)) :
+    # if (robot.button_forward and not(robot.buttonForward)) :
 
-        doubledCostume_24_03_30.setButtons(robot, 0)
+    #     doubledCostume_24_03_30.setButtons(robot, 0)
 
-        robot.buttonForward = 1
+    #     robot.buttonForward = 1
 
-    elif (robot.button_forward and robot.buttonForward) :
+    # elif (robot.button_forward and robot.buttonForward) :
 
-        robot.buttonForward = 0
-        robot.setLEDTop(node, [0,0,32])
-        aw(client.sleep(2))
+    #     robot.buttonForward = 0
+    #     robot.setLEDTop(node, [0,0,32])
+    #     aw(client.sleep(2))
 
-    if (robot.buttonForward) :
+    # if (robot.buttonForward) :
 
         doubledCostume_24_03_30.programFront(robot, node, client)
 
 ########
 
-    if (robot.button_backward) :
+    # if (robot.button_backward) :
 
-        doubledCostume_24_03_30.setButtons(robot, 0)
+    #     doubledCostume_24_03_30.setButtons(robot, 0)
 
-        robot.buttonBackward = 1
+    #     robot.buttonBackward = 1
 
-    if (robot.buttonBackward) :
+    # if (robot.buttonBackward) :
 
-        doubledCostume_24_03_30.programBack(robot, node, client)
+    #     doubledCostume_24_03_30.programBack(robot, node, client)

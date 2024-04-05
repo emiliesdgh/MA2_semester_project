@@ -61,13 +61,13 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
         Thymio.setSpeedLeft(motor_speed, node)
         Thymio.setSpeedRight(-motor_speed, node)
 
-    # elif prox[2] > (prox[0] or prox[1] or prox[3] or prox[4]) :
+    elif prox[2] > (prox[0] or prox[1] or prox[3] or prox[4]) :
 
-    #     color = [0,0,0,24,24,24,0,0]
-    #     Thymio.setLEDCircle(node, color)
+        color = [0,0,0,24,24,24,0,0]
+        Thymio.setLEDCircle(node, color)
 
-    #     Thymio.setSpeedLeft(-motor_speed, node)
-    #     Thymio.setSpeedRight(-motor_speed, node)
+        Thymio.setSpeedLeft(-motor_speed, node)
+        Thymio.setSpeedRight(-motor_speed, node)
 
     else :
         color = [0,0,0,0,0,0,0,0]
