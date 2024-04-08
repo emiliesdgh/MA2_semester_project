@@ -14,6 +14,8 @@ import numpy as np
 # #Classes initialization
 # robot = Thymio()
 
+
+
 def setButtons(Thymio, value) :
 
         Thymio.buttonCenter = value
@@ -30,51 +32,53 @@ def ext_interaction(Thymio, node, motor_speed=100, obs_threshold=500) :
 
     prox = list(node["prox.horizontal"]) + [0]
 
-    if prox[5] > prox[6] :
+    if (prox[5] + prox[6] < 6000) :
 
-        color = [24,24,24,0,0,0,0,24]
-        Thymio.setLEDCircle(node, color)
+        if prox[5] > prox[6] :
 
-        Thymio.setSpeedLeft(motor_speed, node)
-        Thymio.setSpeedRight(-motor_speed, node)
+            color = [24,24,24,0,0,0,0,24]
+            Thymio.setLEDCircle(node, color)
 
-    elif prox[6] > prox[5] : # Thymio needs to contourn the obstacle counterclockwise
-        color = [24,24,0,0,0,0,24,24]
-        Thymio.setLEDCircle(node, color)
+            Thymio.setSpeedLeft(motor_speed, node)
+            Thymio.setSpeedRight(-motor_speed, node)
 
-        Thymio.setSpeedLeft(-motor_speed, node)
-        Thymio.setSpeedRight(motor_speed, node)
+        elif prox[6] > prox[5] : # Thymio needs to contourn the obstacle counterclockwise
+            color = [24,24,0,0,0,0,24,24]
+            Thymio.setLEDCircle(node, color)
 
-    elif prox[0]+prox[1] > prox[3] + prox[4] :
+            Thymio.setSpeedLeft(-motor_speed, node)
+            Thymio.setSpeedRight(motor_speed, node)
 
-        color = [0,24,24,24,24,0,0,0]
-        Thymio.setLEDCircle(node, color)
+        elif prox[0]+prox[1] > prox[3] + prox[4] :
 
-        Thymio.setSpeedLeft(-motor_speed, node)
-        Thymio.setSpeedRight(motor_speed, node)
+            color = [0,24,24,24,24,0,0,0]
+            Thymio.setLEDCircle(node, color)
 
-    elif prox[0]+prox[1] < prox[3] + prox[4] :
+            Thymio.setSpeedLeft(-motor_speed, node)
+            Thymio.setSpeedRight(motor_speed, node)
 
-        color = [0,0,0,0,24,24,24,24]
-        Thymio.setLEDCircle(node, color)
+        elif prox[0]+prox[1] < prox[3] + prox[4] :
 
-        Thymio.setSpeedLeft(motor_speed, node)
-        Thymio.setSpeedRight(-motor_speed, node)
+            color = [0,0,0,0,24,24,24,24]
+            Thymio.setLEDCircle(node, color)
 
-    elif prox[2] > (prox[0] or prox[1] or prox[3] or prox[4]) :
+            Thymio.setSpeedLeft(motor_speed, node)
+            Thymio.setSpeedRight(-motor_speed, node)
 
-        color = [0,0,0,24,24,24,0,0]
-        Thymio.setLEDCircle(node, color)
+        elif prox[2] > (prox[0] or prox[1] or prox[3] or prox[4]) :
 
-        Thymio.setSpeedLeft(-motor_speed, node)
-        Thymio.setSpeedRight(-motor_speed, node)
+            color = [0,0,0,24,24,24,0,0]
+            Thymio.setLEDCircle(node, color)
 
-    else :
-        color = [0,0,0,0,0,0,0,0]
-        Thymio.setLEDCircle(node, color)
+            Thymio.setSpeedLeft(-motor_speed, node)
+            Thymio.setSpeedRight(-motor_speed, node)
 
-        Thymio.setSpeedLeft(0, node)
-        Thymio.setSpeedRight(0, node)
+        else :
+            color = [0,0,0,0,0,0,0,0]
+            Thymio.setLEDCircle(node, color)
+
+            Thymio.setSpeedLeft(0, node)
+            Thymio.setSpeedRight(0, node)
 
 
 def stop_program(Thymio, node, motor_speed=0) :
@@ -103,12 +107,22 @@ def programFront (Thymio, node, client) :
 
 def programBack (Thymio, node, client) :
 
-    Thymio.setLEDTop(node, [20,0,32])
-    color = [0,0,0,0,0,0,0,0]
-    Thymio.setLEDCircle(node, color)
+    prox = list(node["prox.horizontal"]) + [0]
+    proxG = list(node["prox.ground.ambiant"]) + [0]
 
-    Thymio.setSpeedLeft(50, node)
-    Thymio.setSpeedRight(50, node)
+
+    if (prox[5]>1000 and prox[6]>1000 and proxG[0]>0) :
+
+        Thymio.setLEDTop(node, [20,0,32])
+        color = [0,0,0,0,0,0,0,0]
+        Thymio.setLEDCircle(node, color)
+
+        Thymio.setSpeedLeft(50, node)
+        Thymio.setSpeedRight(50, node)
+
+    # else :
+
+    #     Thymio.move_front = False
 
     # aw(client.sleep(2))
 

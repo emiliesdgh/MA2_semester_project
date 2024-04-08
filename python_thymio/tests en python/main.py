@@ -118,7 +118,7 @@ while(1) :
     proxG = list(node["prox.ground.ambiant"]) + [0]
 
     print(proxG[0])
-    print(proxG[1])
+    # print(proxG[1])
 
     
 
@@ -137,17 +137,17 @@ while(1) :
 
 ######## 05.04.2024
 
-    print(prox[5])
+    # print(prox[5])
+    # print(prox[6])
 
-    if (prox[5]>3000 and prox[6]>100) :
-        robot.move_front = True
-
-    if (robot.move_front and (proxG[0]>10)) :
-        W6_T1_PS_24_03_30.programBack(robot, node, client)
-    else :
-        robot.move_front = False
+    # if (prox[5]>1000 and prox[6]>1000 and proxG[0]>10) :
+    
+    W6_T1_PS_24_03_30.programBack(robot, node, client)
+    
 
 ######## DOUBLED COSTUME
+
+    # if ((prox[5]>1000 and prox[6]<1000) or (prox[5]<1000 and prox[6]>1000)) :
 
     W6_T1_PS_24_03_30.ext_interaction(robot, node, motor_speed=100, obs_threshold=500)
 
